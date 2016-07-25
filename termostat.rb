@@ -11,11 +11,6 @@ class Termostat
     evaluate_temperature
   end
 
-  def check_temperature
-    @temperature
-    # define input of measured temperature
-  end
-
   def heating?
     @heating
   end
@@ -23,10 +18,15 @@ class Termostat
   def set_temperature (desired_temperature = DEFAULT_SET_TEMPERATURE)
     @set_temperature = desired_temperature
     evaluate_temperature
-    @set_temperature = desired_temperature
+    @set_temperature
   end
 
   private
+
+  def check_temperature
+    @temperature
+    # define input of measured temperature
+  end
 
   def evaluate_temperature
     @set_temperature > @temperature ? start_heating : stop_heating
