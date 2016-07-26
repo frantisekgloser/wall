@@ -1,10 +1,10 @@
-require './grobot.rb'
+require './grobot'
 
 class FlyingRobot < Robot 
 
   def move (x, y, z)
     @place = [x, y, z]
-    item?
+    items
   end
 
 end  
