@@ -1,21 +1,10 @@
-require './items.rb'
+require './grobot.rb'
 
-class Robot (SERIALNUM, FLYING = true, place)
-
-  DEFAULT_PLACE = [0, 0, 0]
-
-  def initialize
-    @place = place || DEFAULT_PLACE
-  end
-
-
-  def identify
-    @SERIALNUM
-  end
+class FlyingRobot < Robot 
 
   def move (x, y, z)
-    @place[0] = x || FLYING ? @place = [x, y, z] : 'Robot can\'t fly!!!'
-    item
+    @place = [x, y, z]
+    item?
   end
 
 end  
