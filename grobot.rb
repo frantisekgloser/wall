@@ -1,27 +1,36 @@
-require './gitem'
+require './place'
+require './telecommunicationmodule'
+require './weaponmodule'
 
 
 class Robot 
-  attr_reader :serial_number
+  attr_reader :current_place
 
   def initialize (serial_number, x = 0, y = 0, z = 0)
     @serial_number = serial_number
-    @place = [x, y, z]
+    @current_place = [x, y, z]
+    @modules = [false, false]
   end
-
 
   def identify
     @serial_number
   end
 
-  def move (x, y, z)
-    @place[0] = !x ? 'Robot cann\'t fly' : @place[1] = y && @place[2] = z
-    items
+  def get_items(current_place)
+    @points = ObjectSpace.each_object(Place).to_a
+    @points == [] || @points.find { |place| place.place == current_place } == nil ? @modules : @points.find { |place| place.place == current_place }.modules
   end
 
-  def items (x, y, z)
-    Place.TelecommunicationModule.exists ? TelecommunicationModule.include : nil
-    Place.WeaponModule.exists ? WeaponModule.include : nil
+  def install_items(items)
+    items == nil || items[0] == false ? puts("No weapon module here...") : @modules[0] = true && self.extend(WeaponModule) && puts('Yeah! Now I\'ve learned how to .shot.')
+    items == nil || items[1] == false ? puts("No telecommunication module here...") : @modules[0] = true && self.extend(TelecommunicationModule) && puts('Yeah! Now I\'ve learned how to .send_message_to_headquarters.')
+  end
+
+  def move (x, y, z)
+    @current_place[0] == x ? @current_place[1, 2] = [y, z]  : nil 
+    @items = self.get_items(@current_place)
+    install_items(@items)
+    @current_place
   end
 
 end  
