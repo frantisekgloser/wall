@@ -38,6 +38,5 @@ class Robot
     @current_place = [x, y, z]
     @modules = [false, false]
   end
-
-
+  
 end  
