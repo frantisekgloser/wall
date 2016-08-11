@@ -27,7 +27,7 @@ def step(robot)
     when "\e[A"
       robot.move(robot.current_place[0], robot.current_place[1] + 1, robot.current_place[2])
     when "\e[B"
-      robot.current_place[1] > 0 ? robot.move(robot.current_place[0], robot.current_place[1] - 1, robot.current_place[2]) : puts('Cannot fly under ground')
+      robot.move(robot.current_place[0], robot.current_place[1] - 1, robot.current_place[2])
     when "\e[C"
       robot.move(robot.current_place[0], robot.current_place[1], robot.current_place[2] + 1)
     when "\e[D"
@@ -35,7 +35,7 @@ def step(robot)
     when "q"
       robot.move(robot.current_place[0] + 1, robot.current_place[1], robot.current_place[2])
     when "a"
-      robot.move(robot.current_place[0] - 1, robot.current_place[1], robot.current_place[2])
+      robot.current_place[0] > 0 ? robot.move(robot.current_place[0] - 1, robot.current_place[1], robot.current_place[2])  : puts('Cannot fly under ground')
     when "w"
       robot.respond_to?(:shot) ? robot.shot : puts("I cannot shoot yet")
     when "s"
