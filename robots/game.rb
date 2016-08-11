@@ -27,7 +27,7 @@ def step(robot)
     when "\e[A"
       robot.move(robot.current_place[0], robot.current_place[1] + 1, robot.current_place[2])
     when "\e[B"
-      robot.move(robot.current_place[0], robot.current_place[1] - 1, robot.current_place[2])
+      robot.current_place[1] > 0 ? robot.move(robot.current_place[0], robot.current_place[1] - 1, robot.current_place[2]) : puts('Cannot fly under ground')
     when "\e[C"
       robot.move(robot.current_place[0], robot.current_place[1], robot.current_place[2] + 1)
     when "\e[D"
