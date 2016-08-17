@@ -1,7 +1,8 @@
 require 'spec_helper'
-require_relative '../termostat'
+require_relative '../lib/wall/termostat/termostat'
 
 describe Termostat do
+  puts 'testing termostat.................................................'
   let(:termostat) { Termostat.new }
 
   describe '#initialize' do
@@ -74,5 +75,6 @@ describe Termostat do
 
       it { expect(subject).to eql true }
     end
+  puts 'termostat testing finished'
   end
 end
