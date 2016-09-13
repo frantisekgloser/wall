@@ -16,8 +16,26 @@ describe 'Aggregation' do
     context 'default expectation' do
       
       it { expect(subject).to eql 14 }
-
     end
+
+    context 'aggregation -' do
+      let(:aggregation_method) { :- }
+
+      it { expect(subject).to eql -12 }
+    end
+
+    context 'aggregation *' do
+      let(:aggregation_method) { :* }
+
+      it { expect(subject).to eql 36 }
+    end
+
+    context 'aggregation /' do
+      let(:aggregation_method) { :/ }
+
+      it { expect(subject).to eql 1/4/9 }
+    end
+
   puts 'aggregation testing finished'
   end  
 end
