@@ -1,36 +1,45 @@
 
 class Game
 
-#  attr_accessor :position
+  attr_accessor :position
 
   GRID = 3
 
-  def up(position)
+  def initialize
+    @position = [1, 1]
+  end
+
+  def up
     position[0] < GRID ? position[0]+=1 : nil
-    return position
+    position
   end
 
-  def down(position)
+  def down
     position[0] > 0 ? position[0]-=1 : nil
-    return position
+    position
   end
 
-  def left(position)
+  def left
     position[1] > 0 ? position[1]-=1 : nil
-    return position
+    position
   end
 
-  def right(position)
+  def right
     position[1] < GRID ? position[1]+=1 : nil
-    return position
+    position
   end
 
   def save
-
+    file = File.open("./game.txt", "w")
+    file.write(position)
+    file.close
   end
 
-  def self.load
-
+  def load
+    file = File.open("./game.txt", "r")
+    position = file.read
+    file.close
+    position
   end
 
 end
